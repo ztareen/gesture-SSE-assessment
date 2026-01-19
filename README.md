@@ -6,7 +6,7 @@ Allowed Stack: JavaScript / TypeScript, Node.js, React (optional), Python
 (Diagrams, pseudocode, and written explanation are encouraged.)
 
 Purpose
-Gesture builds emotionally intelligent, data-driven systems that connect brands and consumers through tangible experiences. At the core of this is REAL AI, which powers personalization, experimentation, and measurement across both consumer and enterprise products.
+Gesture builds emotionally intelligent, data-driven systems that connect brands and consumers through tangible experiences. At the core of this is our own propriatary AI technology, which powers personalization, experimentation, and measurement across both consumer and our enterprise products.
 
 This assessment is designed to understand how you think about systems, not to test framework knowledge, and is intentionally designed to reflect the kinds of architectural and product-driven challenges we work on at Gesture. It’s not a test of syntax or speed — it’s a way for us to understand how you reason about systems, tradeoffs, and applied intelligence.
 

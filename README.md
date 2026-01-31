@@ -62,7 +62,7 @@ pip install -r requirements.txt
 py main.py --mode pipeline
 ```
 
-What this does is it:
+My main file does the following (view the structure.md for more information):
 1. Generate synthetic event data
 2. Build user features
 3. Score users with rule-based model
@@ -91,7 +91,7 @@ py main.py --mode explain --user-id user_042  # specific user
 
 ## Optional Frontend (React)
 
-A minimal React frontend (built with Vite) is included in the `frontend/` folder. It's an optional demo to visualize scores in the browser and see the stuff properly on a local device. In order to view, just type the following into the terminal: `cd frontend && npm install && npm run dev`.
+I've also included a minimal style react frontend in the `frontend/` folder, using Vite. It's a totally optional demo but I figured that it was a good step towards being able to see things without looking at the terminal or scanning through a CSV file. If I was given more than 3 hours to complete this assesment, that is what I would likely spend more time working on (as well as probably refining my rules and running experiments to adjust coefficients and weights in my calculations). In order to see it for yourself, just type this into the terminal: `cd frontend, then npm install, then npm run dev`.
 
 ---
 

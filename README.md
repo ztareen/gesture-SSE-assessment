@@ -6,11 +6,11 @@ The goal is to identify high-intent users, assign each a score, and clearly expl
 
 The system is designed to be:
 
-Explainable: every score can be broken down into contributing factors
+Explainable — every score can be broken down into contributing factors
 
-Evolvable: features, weights, and logic can be adjusted without changing the overall pipeline
+Evolvable — features, weights, and logic can be adjusted without changing the overall pipeline
 
-Production-inspired: mirrors how real product analytics and lead-scoring systems are structured
+Production-inspired — mirrors how real product analytics and lead-scoring systems are structured
 
 What I Built
 
@@ -18,7 +18,7 @@ At a high level, the pipeline looks like this:
 
 Synthetic events → sessions → users → features → score + explanation
 
-1. Synthetic Interaction Data
+Synthetic Interaction Data
 
 data/generate_users.py generates realistic event-level interaction data for ~100 users, including:
 
@@ -28,29 +28,39 @@ Repeat sessions, bounces, and spammy behavior
 
 Lightweight user context (location, device, account balance, browsing summaries)
 
-This produces data/raw_events.csv.
+Output:
 
-2. Feature Engineering
+data/raw_events.csv
 
-find_user_features.py aggregates raw events into:
+Feature Engineering
 
-Session-level signals (to avoid double-counting bounces/spam)
+find_user_features.py aggregates raw events into structured user-level features.
 
-User-level features, such as:
+Session-level signals
 
-Funnel actions (signups, bookings, demo clicks)
+(used to avoid double-counting bounces and spam)
 
-Engagement metrics (repeat session rate, page views)
+User-level features
 
-Recency (days since last activity)
+Funnel actions: signups, calendar bookings, demo clicks
 
-Basic account context (balance, browsing history)
+Engagement metrics: repeat session rate, page views
 
-It also creates a simple converted label (signup + calendar booking).
+Recency: days since last activity
 
-The output is data/user_features.csv.
+Account context: balance and browsing history
 
-3. Scoring + Explanation (Core Slice)
+A simple converted label is also created:
+
+1 if the user completed both a signup and a calendar booking
+
+0 otherwise
+
+Output:
+
+data/user_features.csv
+
+Scoring + Explanation (Core Slice)
 
 Each user is assigned:
 
@@ -70,18 +80,22 @@ Light engagement and context signals provide small boosts
 
 Recent activity slightly increases priority
 
-Every score is decomposable into per-feature contribution points, which makes the system easy to reason about and debug.
+Every score is decomposable into per-feature contribution points, making the system easy to reason about and debug.
 
-4. Ranking Output
+Ranking Output
 
-rank_users.py sorts users by score and outputs a short list of the top candidates (data/top_users.csv), which is the artifact a downstream system (sales, growth, experiments) would actually consume.
+rank_users.py sorts users by score and outputs a short list of top candidates:
+
+data/top_users.csv
+
+This is the artifact a downstream system (sales, growth, or experimentation) would directly consume.
 
 Why I Chose This Approach
 
-Explainability first: I avoided black-box scoring so it’s always clear why a user ranks above another.
+Explainability first — avoids black-box scoring so it’s always clear why one user ranks above another
 
-Session → user separation: prevents inflated metrics and mirrors real analytics pipelines.
+Session → user separation — prevents inflated metrics and mirrors real analytics pipelines
 
-Simple but realistic: the system is intentionally small, but structured the way a production version would be.
+Simple but realistic — intentionally small, but structured like a production system
 
-Easy to extend: the same features can be fed into a learned model (e.g. XGBoost) without changing data prep.
+Easy to extend — the same features can be reused for a learned model (e.g. XGBoost) without changing data preparation

@@ -2,6 +2,8 @@
 
 ## Overview
 
+This system is designed to **observe and track user behavior**. After the data is captured, for each user, the output is a **numerical intent or qualification score** based on the captured data.
+
 Based off of the instructions that I was given, I created a project that does the following:
 
 1. Creates and reads a dataset of synthetic user interaction events including page views, pricing page visits, demo requests, signups, and calendar bookings
@@ -52,10 +54,12 @@ I also included optional XGBoost training files (`train_xgb.py` and `score_model
 pip install -r requirements.txt
 ```
 
+**Note for Windows users:** If you have Python 3 installed but `python3` doesn't work, use `py` instead of `python` or `python3` in the commands below. For example, use `py main.py` instead of `python main.py`.
+
 ### Run Complete Pipeline
 
 ```bash
-python main.py --mode pipeline
+py main.py --mode pipeline
 ```
 
 What this does is it:
@@ -69,20 +73,20 @@ What this does is it:
 
 ```bash
 # 1. Generate data
-python main.py --mode generate --n-users 100
+py main.py --mode generate --n-users 100
 
 # 2. Build features
-python main.py --mode featurize
+py main.py --mode featurize
 
 # 3. Score users
-python main.py --mode score-rules
+py main.py --mode score-rules
 
 # 4. Rank and export top users
-python main.py --mode rank --n 20
+py main.py --mode rank --n 20
 
 # 5. Explain results
-python main.py --mode explain
-python main.py --mode explain --user-id user_042  # specific user
+py main.py --mode explain
+py main.py --mode explain --user-id user_042  # specific user
 ```
 
 ## Optional Frontend (React)

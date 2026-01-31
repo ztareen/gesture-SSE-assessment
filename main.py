@@ -208,17 +208,19 @@ def main():
         epilog="""
 Examples:
   # Run complete pipeline
-  python main.py --mode pipeline
+  py main.py --mode pipeline
   
   # Run individual steps
-  python main.py --mode generate --n-users 100
-  python main.py --mode featurize
-  python main.py --mode score-rules
-  python main.py --mode rank --n 20
-  python main.py --mode explain
+  py main.py --mode generate --n-users 100
+  py main.py --mode featurize
+  py main.py --mode score-rules
+  py main.py --mode rank --n 20
+  py main.py --mode explain
   
   # Explain specific user
-  python main.py --mode explain --user-id user_001
+  py main.py --mode explain --user-id user_001
+  
+Note: On Windows, use 'py' instead of 'python' or 'python3' if needed.
         """
     )
     

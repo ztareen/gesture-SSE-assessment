@@ -262,7 +262,7 @@ def main() -> None:
         print("SCORING / RANKING SLICE — SUMMARY")
         print("="*70)
         
-        print(f"\n📊 Dataset Overview:")
+        print(f"\n Dataset Overview:")
         print(f"   Total users scored: {len(df)}")
         converted = int(df["converted"].sum()) if "converted" in df.columns else 0
         print(f"   Converted users: {converted} ({100*converted/len(df):.1f}%)")
@@ -270,7 +270,7 @@ def main() -> None:
         # Score distribution
         if "score" in df.columns:
             s = df["score"].dropna()
-            print(f"\n📈 Score Distribution (0-100 scale):")
+            print(f"\n Score Distribution (0-100 scale):")
             print(f"   Mean:   {s.mean():6.2f}")
             print(f"   Median: {s.median():6.2f}")
             print(f"   Range:  {s.min():.2f} - {s.max():.2f}")
@@ -280,14 +280,14 @@ def main() -> None:
             if "score_label" in df.columns:
                 vc = df["score_label"].value_counts()
                 total = len(df)
-                print(f"\n🏷️  Score Labels:")
+                print(f"\n  Score Labels:")
                 for lbl in ["high", "medium", "low"]:
                     count = int(vc.get(lbl, 0))
                     pct = 100 * count / total if total > 0 else 0
                     print(f"   {lbl.capitalize():8s}: {count:3d} users ({pct:5.1f}%)")
 
             # Top N users with explanations
-            print(f"\n🎯 Top {top_n} High-Intent Users (Ranked by Score):")
+            print(f"\n Top {top_n} High-Intent Users (Ranked by Score):")
             print("-" * 70)
             top = df.sort_values("score", ascending=False).head(top_n)
             for idx, (_, r) in enumerate(top.iterrows(), 1):
@@ -313,7 +313,7 @@ def main() -> None:
                         continue
                 
                 if feats:
-                    print(f"\n🔍 Feature Impact Analysis (Total Contribution Points):")
+                    print(f"\n Feature Impact Analysis (Total Contribution Points):")
                     print("-" * 70)
                     for k, val in sorted(feats.items(), key=lambda x: x[1], reverse=True)[:8]:
                         bar_len = int(val / max(feats.values()) * 30) if feats else 0

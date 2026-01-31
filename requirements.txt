@@ -1,0 +1,14 @@
+# Core dependencies
+pandas>=2.0.0
+numpy>=1.24.0
+
+# Optional: for XGBoost model training
+xgboost>=2.0.0
+scikit-learn>=1.3.0
+
+# Optional: for SHAP explanations
+shap>=0.43.0
+
+# Optional: for visualization
+matplotlib>=3.7.0
+seaborn>=0.12.0

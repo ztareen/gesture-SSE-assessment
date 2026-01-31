@@ -99,14 +99,26 @@ def choose_event_type(intent: float) -> str:
         )[0]
 
 
-def main() -> None:
+def generate_users(output_path: str = None, n_users: int = None, seed: int = None) -> None:
+    """Programmatic entrypoint for other scripts.
+
+    Args:
+        output_path: path to write CSV (overrides module-level OUTPUT_PATH)
+        n_users: number of users to generate (overrides NUM_USERS)
+        seed: optional random seed for deterministic output
+    """
+    if seed is not None:
+        random.seed(seed)
+
     now = datetime.utcnow()
 
     rows = []
     event_counter = 1
 
+    use_n = n_users if n_users is not None else NUM_USERS
+
     # Pre-create stable user profiles
-    users = [sample_user_profile(i) for i in range(NUM_USERS)]
+    users = [sample_user_profile(i) for i in range(use_n)]
 
     for user in users:
         sessions = random.randint(MIN_SESSIONS_PER_USER, MAX_SESSIONS_PER_USER)
@@ -158,15 +170,21 @@ def main() -> None:
 
                 event_counter += 1
 
-    OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
+    out_path = Path(output_path) if output_path else OUTPUT_PATH
+    out_path.parent.mkdir(parents=True, exist_ok=True)
 
     fieldnames = list(rows[0].keys()) if rows else []
-    with OUTPUT_PATH.open("w", newline="", encoding="utf-8") as f:
+    with out_path.open("w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=fieldnames)
         writer.writeheader()
         writer.writerows(rows)
 
-    print(f"Wrote {len(rows)} rows to {OUTPUT_PATH}")
+    print(f"Wrote {len(rows)} rows to {out_path}")
+
+
+def main() -> None:
+    # Backwards-compatible CLI
+    generate_users()
 
 
 if __name__ == "__main__":

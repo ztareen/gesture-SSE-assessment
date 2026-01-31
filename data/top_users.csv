@@ -1,11 +1,21 @@
-user_id,username,score,score_label,explanation,converted
-u0014,ethan_c_14,89.37,high,signups (+30.0 pts) + calendar_bookings (+30.0 pts) + demo_request_clicks (+15.0 pts),1
-u0075,sarah_k_75,88.46,high,signups (+30.0 pts) + calendar_bookings (+30.0 pts) + pricing_page_views (+8.0 pts),1
-u0013,liam_h_13,84.77,high,signups (+30.0 pts) + calendar_bookings (+30.0 pts) + demo_request_clicks (+11.2 pts),1
-u0010,maya_g_10,84.41,high,signups (+30.0 pts) + calendar_bookings (+30.0 pts) + demo_request_clicks (+7.5 pts),1
-u0023,emma_w_23,83.58,high,signups (+30.0 pts) + calendar_bookings (+30.0 pts) + demo_request_clicks (+7.5 pts),1
-u0093,nina_d_93,83.4,high,signups (+30.0 pts) + calendar_bookings (+30.0 pts) + demo_request_clicks (+7.5 pts),1
-u0044,maya_g_44,83.31,high,signups (+30.0 pts) + calendar_bookings (+30.0 pts) + demo_request_clicks (+7.5 pts),1
-u0094,alex_chen_94,82.12,high,signups (+30.0 pts) + calendar_bookings (+30.0 pts) + demo_request_clicks (+7.5 pts),1
-u0040,chris_j_40,81.35,high,signups (+30.0 pts) + calendar_bookings (+30.0 pts) + pricing_page_views (+8.0 pts),1
-u0025,jordan_m_25,76.51,high,signups (+30.0 pts) + calendar_bookings (+30.0 pts) + repeat_session_rate (+4.9 pts),1
+user_id,username,score,score_label,explanation,signups,calendar_bookings,demo_request_clicks,pricing_page_views,converted
+u0077,priya_p_77,82.65,high,signups (+30.0 pts) + calendar_bookings (+30.0 pts) + demo_request_clicks (+10.0 pts),2,2,2,3,1
+u0059,alex_chen_59,77.88,high,signups (+30.0 pts) + calendar_bookings (+30.0 pts) + demo_request_clicks (+5.0 pts),1,1,1,1,1
+u0044,priya_p_44,74.4,high,signups (+30.0 pts) + calendar_bookings (+30.0 pts) + demo_request_clicks (+5.0 pts),2,1,1,2,1
+u0017,emma_w_17,68.74,medium,signups (+30.0 pts) + calendar_bookings (+30.0 pts) + repeat_session_rate (+4.5 pts),1,1,0,2,1
+u0003,ethan_c_03,59.1,medium,signups (+30.0 pts) + demo_request_clicks (+15.0 pts) + account_balance_usd (+4.7 pts),1,0,3,2,0
+u0025,liam_h_25,57.1,medium,calendar_bookings (+30.0 pts) + demo_request_clicks (+10.0 pts) + repeat_session_rate (+5.0 pts),0,1,2,2,0
+u0020,olivia_s_20,56.15,medium,signups (+30.0 pts) + pricing_page_views (+8.0 pts) + demo_request_clicks (+5.0 pts),1,0,1,6,0
+u0049,priya_p_49,53.4,medium,signups (+30.0 pts) + demo_request_clicks (+10.0 pts) + repeat_session_rate (+5.0 pts),3,0,2,1,0
+u0037,alex_chen_37,52.53,medium,calendar_bookings (+30.0 pts) + pricing_page_views (+5.3 pts) + demo_request_clicks (+5.0 pts),0,2,1,4,0
+u0084,jordan_m_84,51.88,medium,calendar_bookings (+30.0 pts) + pricing_page_views (+6.7 pts) + demo_request_clicks (+5.0 pts),0,2,1,5,0
+u0023,nina_d_23,50.01,medium,calendar_bookings (+30.0 pts) + demo_request_clicks (+5.0 pts) + repeat_session_rate (+5.0 pts),0,1,1,2,0
+u0089,priya_p_89,48.33,medium,calendar_bookings (+30.0 pts) + demo_request_clicks (+5.0 pts) + repeat_session_rate (+5.0 pts),0,1,1,3,0
+u0007,maya_g_07,47.13,medium,calendar_bookings (+30.0 pts) + demo_request_clicks (+5.0 pts) + account_balance_usd (+4.4 pts),0,1,1,1,0
+u0019,emma_w_19,46.37,medium,signups (+30.0 pts) + demo_request_clicks (+5.0 pts) + repeat_session_rate (+5.0 pts),2,0,1,0,0
+u0032,mike_t_32,46.06,medium,signups (+30.0 pts) + pricing_page_views (+5.3 pts) + repeat_session_rate (+5.0 pts),1,0,0,4,0
+u0073,emma_w_73,45.27,medium,signups (+30.0 pts) + demo_request_clicks (+5.0 pts) + repeat_session_rate (+3.7 pts),1,0,1,0,0
+u0070,sarah_k_70,41.75,medium,signups (+30.0 pts) + repeat_session_rate (+4.9 pts) + pricing_page_views (+2.7 pts),1,0,0,2,0
+u0005,priya_p_05,37.83,low,calendar_bookings (+30.0 pts) + repeat_session_rate (+3.7 pts) + page_views (+1.5 pts),0,1,0,1,0
+u0011,mike_t_11,31.73,low,signups (+30.0 pts) + recent_pages_viewed (+0.7 pts) + repeat_session_rate (+0.6 pts),1,0,0,0,0
+u0056,ethan_c_56,28.61,low,demo_request_clicks (+10.0 pts) + pricing_page_views (+6.7 pts) + repeat_session_rate (+5.0 pts),0,0,2,5,0

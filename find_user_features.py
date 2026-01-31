@@ -321,7 +321,7 @@ def main() -> None:
                         print(f"   {k:25s} {bar:30s} {val:6.1f} pts")
             
             print("\n" + "="*70)
-            print(f"✓ Full results saved to: {OUT_PATH}")
+            print(f"Full results saved to: {OUT_PATH}")
             print("="*70 + "\n")
 
     print_summary(user, top_n=10)

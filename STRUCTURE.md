@@ -7,7 +7,7 @@ gesture-sse-assessment/
 ├── requirements.txt             # Python dependencies
 ├── STRUCTURE.md                 # This file
 │
-├── main.py                      # 🚀 CLI orchestration (run everything)
+├── main.py                      # CLI orchestration (run everything)
 │
 ├── data/
 │   ├── generate_users.py        # Generate synthetic event data
@@ -16,12 +16,12 @@ gesture-sse-assessment/
 │   ├── user_scores.csv          # [Generated] Scored users
 │   └── top_users.csv            # [Generated] Ranked output
 │
-├── featurize.py                 # ⚙️  Event → User feature pipeline
-├── score_rules.py               # 🎯 Rule-based scoring (CORE)
-├── explain.py                   # 🔍 Explanation generation
+├── featurize.py                 # Event → User feature pipeline
+├── score_rules.py               # Rule-based scoring (CORE)
+├── explain.py                   # Explanation generation
 │
-├── train_xgb.py                 # 🤖 [Optional] Train ML model
-├── score_model.py               # 📊 [Optional] Score with ML
+├── train_xgb.py                 # [Optional] Train ML model
+├── score_model.py               # [Optional] Score with ML
 │
 └── models/                      # [Optional] Trained model artifacts
     ├── xgb_model.json

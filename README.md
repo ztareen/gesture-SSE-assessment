@@ -1,117 +1,87 @@
-# GESTURE — SENIOR SOFTWARE ENGINEERING - REAL WORLD ASSESSMENT
+Gesture SSE Assessment — Scoring / Ranking Slice
+Overview
 
-Time Expectation: 3 Hours or less (total for both part 1 and part 2) 
+This project implements a simplified user scoring and ranking system using synthetic interaction data.
+The goal is to identify high-intent users, assign each a score, and clearly explain why that score was given.
 
-Allowed Stack: JavaScript / TypeScript, Node.js, React (optional), Python
-(Diagrams, pseudocode, and written explanation are encouraged.)
+The system is designed to be:
 
-Purpose
-Gesture builds emotionally intelligent, data-driven systems that connect brands and consumers through tangible experiences. At the core of this is our own propriatary AI technology, which powers personalization, experimentation, and measurement across both consumer and our enterprise products.
+Explainable: every score can be broken down into contributing factors
 
-This assessment is designed to understand how you think about systems, not to test framework knowledge, and is intentionally designed to reflect the kinds of architectural and product-driven challenges we work on at Gesture. It’s not a test of syntax or speed — it’s a way for us to understand how you reason about systems, tradeoffs, and applied intelligence.
+Evolvable: features, weights, and logic can be adjusted without changing the overall pipeline
 
-### The assessment has two parts:
+Production-inspired: mirrors how real product analytics and lead-scoring systems are structured
 
-Part 1 focuses on system design, experimentation thinking, and decision logic.
+What I Built
 
-Part 2 is a small, targeted prototype to demonstrate how your ideas translate into structure.
+At a high level, the pipeline looks like this:
 
-We expect this should take you no more than approximately 3 hours or less to complete, and we’re happy for you to time-box it in a way that works for you.
+Synthetic events → sessions → users → features → score + explanation
 
-Please let us know if you have any questions. We’re looking forward to reviewing your approach.
+1. Synthetic Interaction Data
 
-#
-## 🟦 PART 1 — SYSTEMS THINKING & DESIGN (Primary Signal)
+data/generate_users.py generates realistic event-level interaction data for ~100 users, including:
 
-#### Prompt
+Page views, pricing views, demo requests, signups, calendar bookings
 
-Design a conversational or interactive system that:
-- Educates users about a product or service
-- Identifies high-intent users and captures actionable signals
-- Improves over time based on usage and feedback
-- Can integrate with external systems (e.g. CRM, analytics, internal tools)
+Repeat sessions, bounces, and spammy behavior
 
-#### Your Task
-Provide a short written design covering:
-Architecture
-- High-level system architecture
-- Core components (frontend, backend, logic/AI layer, data storage)
-- How interactions are logged and reused
-- How external integrations would work
-  
-#### Experimentation & Measurement
-- How system behavior would be tested and improved over time
-- What metrics matter and why
-- How to avoid misleading or noisy experiments
+Lightweight user context (location, device, account balance, browsing summaries)
 
-#### Decision Logic
-- How free-form user input maps to structured decisions
-- Rules vs models: where each is appropriate
-- How the system evolves safely over time
-  
-#### Tradeoffs & Risks
-- Key technical risks
-- Product or data risks
-- What you would explicitly not build in v1
+This produces data/raw_events.csv.
 
-#### Part 1 Deliverable:
-2–4 pages of written explanation (bullets are fine). Diagrams optional.
+2. Feature Engineering
 
-#
-## 🟧 PART 2 — TARGETED IMPLEMENTATION (Supporting Signal)
+find_user_features.py aggregates raw events into:
 
-Choose one option:
+Session-level signals (to avoid double-counting bounces/spam)
 
-#### Option A — Decision Engine Prototype
-#### Build a small service that: Accepts free-text input + light context
+User-level features, such as:
 
-Outputs:
+Funnel actions (signups, bookings, demo clicks)
 
-- vertical
+Engagement metrics (repeat session rate, page views)
 
-- recommended campaign
+Recency (days since last activity)
 
-- confidence score
+Basic account context (balance, browsing history)
 
-- reasoning
+It also creates a simple converted label (signup + calendar booking).
 
-- next questions to ask
+The output is data/user_features.csv.
 
-- Focus on structure and extensibility, not ML accuracy.
+3. Scoring + Explanation (Core Slice)
 
-OR
+Each user is assigned:
 
-#### Option B — Experimentation Framework Skeleton
-#### Implement a minimal framework showing: 
+A score from 0–100
 
-- How results are logged
+A label (low, medium, high)
 
-- How winning variants are selected
+A human-readable explanation showing the top contributing signals
 
-- Simulation or fake data is fine.
+The score is computed using a weighted, normalized model where:
 
-OR
+High-intent actions (signups, calendar bookings) dominate
 
-#### Option C — Scoring / Ranking Slice
-#### Build a simplified scoring model that:
+Mid-funnel actions (demo requests, pricing views) matter
 
-- Outputs a score + explanation
+Light engagement and context signals provide small boosts
 
-- Takes synthetic interaction data
+Recent activity slightly increases priority
 
-- Is explainable and evolvable
+Every score is decomposable into per-feature contribution points, which makes the system easy to reason about and debug.
 
-#### Part 2 Deliverable (applies to any of the chosen options above):
-1. Code
-2. Short README explaining what you built, why you chose it, and what comes next
+4. Ranking Output
 
----
+rank_users.py sorts users by score and outputs a short list of the top candidates (data/top_users.csv), which is the artifact a downstream system (sales, growth, experiments) would actually consume.
 
-## Running the repository (Windows note) ⚠️
+Why I Chose This Approach
 
-If you're on Windows, prefer using the `py` launcher for running scripts and installing packages to ensure the correct Python environment is used:
+Explainability first: I avoided black-box scoring so it’s always clear why a user ranks above another.
 
-- Install dependencies: `py -m pip install pandas`
-- Run the feature script: `py find_user_features.py`
+Session → user separation: prevents inflated metrics and mirrors real analytics pipelines.
 
-This works with the repository virtual environment created for the assessment and avoids issues where the `python` command is not available in PATH.
+Simple but realistic: the system is intentionally small, but structured the way a production version would be.
+
+Easy to extend: the same features can be fed into a learned model (e.g. XGBoost) without changing data prep.

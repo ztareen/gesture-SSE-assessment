@@ -254,38 +254,54 @@ def main() -> None:
     user.to_csv(OUT_PATH, index=False)
     print(f"Wrote {len(user)} users to {OUT_PATH}")
 
-    # --------- Print a concise CLI summary for users ---------
-    def print_summary(df, top_n: int = 5):
+    # --------- Print scoring/ranking summary ---------
+    def print_summary(df, top_n: int = 10):
         import json
-        print("\nSummary:")
-        print(f"  Total users: {len(df)}")
+        
+        print("\n" + "="*70)
+        print("SCORING / RANKING SLICE — SUMMARY")
+        print("="*70)
+        
+        print(f"\n📊 Dataset Overview:")
+        print(f"   Total users scored: {len(df)}")
         converted = int(df["converted"].sum()) if "converted" in df.columns else 0
-        print(f"  Converted users: {converted}")
+        print(f"   Converted users: {converted} ({100*converted/len(df):.1f}%)")
 
         # Score distribution
         if "score" in df.columns:
             s = df["score"].dropna()
-            print("\n  Score distribution:")
-            print(f"    Mean: {s.mean():.2f}")
-            print(f"    Median: {s.median():.2f}")
-            print(f"    Min: {s.min():.2f}")
-            print(f"    Max: {s.max():.2f}")
-            print(f"    Std: {s.std():.2f}")
+            print(f"\n📈 Score Distribution (0-100 scale):")
+            print(f"   Mean:   {s.mean():6.2f}")
+            print(f"   Median: {s.median():6.2f}")
+            print(f"   Range:  {s.min():.2f} - {s.max():.2f}")
+            print(f"   Std:    {s.std():6.2f}")
 
-            # label counts
+            # Label counts
             if "score_label" in df.columns:
                 vc = df["score_label"].value_counts()
-                print("\n  Score labels:")
+                total = len(df)
+                print(f"\n🏷️  Score Labels:")
                 for lbl in ["high", "medium", "low"]:
-                    print(f"    {lbl}: {int(vc.get(lbl,0))}")
+                    count = int(vc.get(lbl, 0))
+                    pct = 100 * count / total if total > 0 else 0
+                    print(f"   {lbl.capitalize():8s}: {count:3d} users ({pct:5.1f}%)")
 
-            # Top N users
-            print(f"\n  Top {top_n} users by score:")
+            # Top N users with explanations
+            print(f"\n🎯 Top {top_n} High-Intent Users (Ranked by Score):")
+            print("-" * 70)
             top = df.sort_values("score", ascending=False).head(top_n)
-            for _, r in top.iterrows():
-                print(f"    {r.get('user_id','-')} {r.get('username','-')}: {r.get('score',0)} ({r.get('score_label','-')}) — {r.get('explanation','')}")
+            for idx, (_, r) in enumerate(top.iterrows(), 1):
+                user_id = r.get('user_id', '-')
+                username = r.get('username', '-')
+                score = r.get('score', 0)
+                label = r.get('score_label', '-')
+                explanation = r.get('explanation', 'No explanation available')
+                
+                print(f"\n   #{idx:2d}. {username} (ID: {user_id})")
+                print(f"       Score: {score:.1f}/100 [{label.upper()}]")
+                print(f"       Why:   {explanation}")
 
-            # Aggregate feature contributions
+            # Feature contribution analysis
             feats = {}
             if "feature_contributions" in df.columns:
                 for v in df["feature_contributions"].dropna():
@@ -295,12 +311,20 @@ def main() -> None:
                             feats[k] = feats.get(k, 0.0) + float(val)
                     except Exception:
                         continue
+                
                 if feats:
-                    print("\n  Top contributing features (sum of contribution points):")
-                    for k, val in sorted(feats.items(), key=lambda x: x[1], reverse=True)[:10]:
-                        print(f"    {k}: {val:.1f}")
+                    print(f"\n🔍 Feature Impact Analysis (Total Contribution Points):")
+                    print("-" * 70)
+                    for k, val in sorted(feats.items(), key=lambda x: x[1], reverse=True)[:8]:
+                        bar_len = int(val / max(feats.values()) * 30) if feats else 0
+                        bar = "█" * bar_len
+                        print(f"   {k:25s} {bar:30s} {val:6.1f} pts")
+            
+            print("\n" + "="*70)
+            print(f"✓ Full results saved to: {OUT_PATH}")
+            print("="*70 + "\n")
 
-    print_summary(user, top_n=5)
+    print_summary(user, top_n=10)
 
 if __name__ == "__main__":
     main()

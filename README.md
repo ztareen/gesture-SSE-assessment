@@ -28,20 +28,19 @@ For user convenience, everything can be run with just `main.py`.
 ---
 
 ## Architecture
-
-The code is split into separate modules where each file does one thing. This makes it way easier to debug and change individual pieces without breaking everything else. The core scoring logic lives in `score_rules.py` and uses configurable weights, so you can tweak what matters most without rewriting code.
+The code has seperate functions, modules, and files so that everything kind of operates seperately and are brought together by the main files like main.py. I think that makes things way easier to debug because you can kind of edit individual peices without messing up the parameters of every single other part of your code. The logic that I developed can be found overall is shown in `score_rules.py`. In there, you can edit literally any of the coefficient and variables depending on what research times find as the priority in terms of clickthrough (i.e. if you find that retention and number of times a site is visited isn't as statistically significant as demographics, your values there can be edited to reflect that)
 
 ---
 
 ## This code is useful for experimentation as well
 
-You can use this scoring system to find their engagement levels and identify targeted groups where you run experiments. For example, you have 100 users and you run the experiment on 50 and have a control group of 50. The scoring system helps you stratify users by intent level so your experiments have balanced groups and meaningful results.
+You can use this scoring system to find their engagement levels via experiments. My idea for this was basically that you can have like for example 100 users and run the experiment on 50 of the users and keep 50 as a control group. From there you can use the scoring system to effectivley stratify users by intent level so your experiments have balanced groups and then extrapolate some results. In layman's terms, you can run experiments on the data, edit the code to reflect your findings, and create a positive feedback loop of constantly improving your model.
 
 ---
 
 ## XGBoost
 
-I also included optional XGBoost training files (`train_xgb.py` and `score_model.py`) to show how you can evolve from rule-based scoring to machine learning using the exact same features. The same feature pipeline works for both approaches without any modifications.
+I also included optional XGBoost training files (`train_xgb.py` and `score_model.py`). These are more so just to show how you can develop the code even further to use ML pipelines and features to get even more optimal results. In essence, the same feature pipeline works for both approaches without any modifications.
 
 ---
 
@@ -59,7 +58,7 @@ pip install -r requirements.txt
 python main.py --mode pipeline
 ```
 
-This will:
+What this does is it:
 1. Generate synthetic event data
 2. Build user features
 3. Score users with rule-based model
@@ -88,7 +87,7 @@ python main.py --mode explain --user-id user_042  # specific user
 
 ---
 
-## Output Files
+## Output Files (for reference)
 
 ```
 data/

@@ -87,7 +87,7 @@ python main.py --mode explain --user-id user_042  # specific user
 
 ## Optional Frontend (React)
 
-A minimal React frontend (built with Vite) is included in the `frontend/` folder. It's an optional demo to visualize scores in the browser — to run it locally: `cd frontend && npm install && npm run dev`.
+A minimal React frontend (built with Vite) is included in the `frontend/` folder. It's an optional demo to visualize scores in the browser and see the stuff properly on a local device. In order to view, just type the following into the terminal: `cd frontend && npm install && npm run dev`.
 
 ---
 

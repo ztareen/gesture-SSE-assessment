@@ -1,0 +1,51 @@
+event_id,user_id,username,session_id,timestamp,event_type,location_city,device,is_repeat_session,session_number,account_balance_usd,recent_pages_viewed,recent_pricing_views,gender,time_on_page_sec,scroll_depth_pct,bounce_flag,spam_flag
+e000001,u0001,alex_chen,s3481,2026-01-28T18:03:12,page_view,San Francisco,desktop,0,1,245.30,7,3,male,41,72,0,0
+e000002,u0001,alex_chen,s3481,2026-01-28T18:06:10,pricing_page_view,San Francisco,desktop,0,1,245.30,7,3,male,94,89,0,0
+e000003,u0001,alex_chen,s3481,2026-01-28T18:08:55,chat_message,San Francisco,desktop,0,1,245.30,7,3,male,0,,0,0
+e000004,u0001,alex_chen,s3481,2026-01-28T18:11:02,demo_request_click,San Francisco,desktop,0,1,245.30,7,3,male,0,,0,0
+e000005,u0001,alex_chen,s9024,2026-01-29T16:22:15,page_view,San Francisco,mobile,1,2,245.30,7,3,male,27,55,0,0
+e000006,u0001,alex_chen,s9024,2026-01-29T16:24:41,search,San Francisco,mobile,1,2,245.30,7,3,male,9,,0,0
+e000007,u0001,alex_chen,s9024,2026-01-29T16:27:10,doc_download,San Francisco,mobile,1,2,245.30,7,3,male,0,,0,0
+e000008,u0002,sarah_k,s1107,2026-01-27T15:41:17,page_view,New York,mobile,0,1,12.80,2,0,female,16,22,1,0
+e000009,u0002,sarah_k,s1107,2026-01-27T15:41:55,page_view,New York,mobile,0,1,12.80,2,0,female,12,18,1,0
+e000010,u0003,jordan_m,s7712,2026-01-26T21:12:44,page_view,London,desktop,0,1,1020.00,12,4,non_binary,66,91,0,0
+e000011,u0003,jordan_m,s7712,2026-01-26T21:14:20,doc_download,London,desktop,0,1,1020.00,12,4,non_binary,0,,0,0
+e000012,u0003,jordan_m,s7712,2026-01-26T21:18:01,signup,London,desktop,0,1,1020.00,12,4,non_binary,0,,0,0
+e000013,u0003,jordan_m,s7712,2026-01-26T21:23:12,calendar_booking,London,desktop,0,1,1020.00,12,4,non_binary,0,,0,0
+e000014,u0003,jordan_m,s3340,2026-01-29T19:02:10,page_view,London,desktop,1,2,1020.00,12,4,non_binary,48,77,0,0
+e000015,u0003,jordan_m,s3340,2026-01-29T19:04:52,pricing_page_view,London,desktop,1,2,1020.00,12,4,non_binary,103,95,0,0
+e000016,u0003,jordan_m,s3340,2026-01-29T19:06:18,demo_request_click,London,desktop,1,2,1020.00,12,4,non_binary,0,,0,0
+e000017,u0004,priya_p,s2039,2026-01-25T10:08:09,page_view,Bangalore,desktop,0,1,0.00,1,0,undisclosed,4,6,1,1
+e000018,u0004,priya_p,s2039,2026-01-25T10:08:40,page_view,Bangalore,desktop,0,1,0.00,1,0,undisclosed,3,4,1,1
+e000019,u0005,mike_t,s6610,2026-01-28T13:20:31,page_view,Toronto,mobile,0,1,86.10,5,1,male,35,61,0,0
+e000020,u0005,mike_t,s6610,2026-01-28T13:23:22,search,Toronto,mobile,0,1,86.10,5,1,male,8,,0,0
+e000021,u0005,mike_t,s6610,2026-01-28T13:25:04,pricing_page_view,Toronto,mobile,0,1,86.10,5,1,male,74,83,0,0
+e000022,u0005,mike_t,s6610,2026-01-28T13:27:10,chat_message,Toronto,mobile,0,1,86.10,5,1,male,0,,0,0
+e000023,u0006,emma_w,s4988,2026-01-27T08:11:55,page_view,San Francisco,mobile,0,1,510.75,9,2,female,58,79,0,0
+e000024,u0006,emma_w,s4988,2026-01-27T08:14:12,pricing_page_view,San Francisco,mobile,0,1,510.75,9,2,female,88,92,0,0
+e000025,u0006,emma_w,s4988,2026-01-27T08:16:59,demo_request_click,San Francisco,mobile,0,1,510.75,9,2,female,0,,0,0
+e000026,u0006,emma_w,s4988,2026-01-27T08:19:10,signup,San Francisco,mobile,0,1,510.75,9,2,female,0,,0,0
+e000027,u0007,noah_b,s7421,2026-01-29T06:02:41,page_view,New York,desktop,0,1,33.40,4,0,male,22,43,0,0
+e000028,u0007,noah_b,s7421,2026-01-29T06:04:09,page_view,New York,desktop,0,1,33.40,4,0,male,19,38,0,0
+e000029,u0007,noah_b,s7421,2026-01-29T06:05:50,search,New York,desktop,0,1,33.40,4,0,male,7,,0,0
+e000030,u0008,liam_h,s5902,2026-01-24T17:41:09,page_view,London,mobile,0,1,150.00,6,1,male,40,67,0,0
+e000031,u0008,liam_h,s5902,2026-01-24T17:44:05,doc_download,London,mobile,0,1,150.00,6,1,male,0,,0,0
+e000032,u0008,liam_h,s5902,2026-01-24T17:46:12,chat_message,London,mobile,0,1,150.00,6,1,male,0,,0,0
+e000033,u0009,olivia_s,s8150,2026-01-28T11:33:14,page_view,Toronto,desktop,0,1,705.20,10,3,female,63,85,0,0
+e000034,u0009,olivia_s,s8150,2026-01-28T11:36:44,pricing_page_view,Toronto,desktop,0,1,705.20,10,3,female,111,97,0,0
+e000035,u0009,olivia_s,s8150,2026-01-28T11:39:22,demo_request_click,Toronto,desktop,0,1,705.20,10,3,female,0,,0,0
+e000036,u0009,olivia_s,s8150,2026-01-28T11:40:10,signup,Toronto,desktop,0,1,705.20,10,3,female,0,,0,0
+e000037,u0009,olivia_s,s8150,2026-01-28T11:44:58,calendar_booking,Toronto,desktop,0,1,705.20,10,3,female,0,,0,0
+e000038,u0010,ethan_c,s3006,2026-01-29T23:18:03,page_view,Bangalore,desktop,0,1,6.00,2,0,male,9,12,1,0
+e000039,u0010,ethan_c,s3006,2026-01-29T23:18:31,page_view,Bangalore,desktop,0,1,6.00,2,0,male,7,8,1,0
+e000040,u0011,guest_11,s1229,2026-01-26T04:05:52,page_view,San Francisco,desktop,0,1,0.00,1,0,undisclosed,5,9,1,1
+e000041,u0011,guest_11,s1229,2026-01-26T04:06:19,search,San Francisco,desktop,0,1,0.00,1,0,undisclosed,3,,1,1
+e000042,u0012,maya_g,s4772,2026-01-27T20:12:12,page_view,New York,desktop,0,1,320.45,8,2,female,52,76,0,0
+e000043,u0012,maya_g,s4772,2026-01-27T20:15:01,pricing_page_view,New York,desktop,0,1,320.45,8,2,female,90,93,0,0
+e000044,u0012,maya_g,s4772,2026-01-27T20:18:55,doc_download,New York,desktop,0,1,320.45,8,2,female,0,,0,0
+e000045,u0012,maya_g,s4772,2026-01-27T20:20:31,demo_request_click,New York,desktop,0,1,320.45,8,2,female,0,,0,0
+e000046,u0013,daniel_r,s6318,2026-01-29T12:02:20,page_view,London,desktop,0,1,58.70,3,1,male,29,49,0,0
+e000047,u0013,daniel_r,s6318,2026-01-29T12:04:57,pricing_page_view,London,desktop,0,1,58.70,3,1,male,72,84,0,0
+e000048,u0013,daniel_r,s6318,2026-01-29T12:06:10,chat_message,London,desktop,0,1,58.70,3,1,male,0,,0,0
+e000049,u0014,nina_d,s7101,2026-01-28T07:55:08,page_view,Toronto,mobile,0,1,410.10,9,2,female,47,70,0,0
+e000050,u0014,nina_d,s7101,2026-01-28T07:58:33,doc_download,Toronto,mobile,0,1,410.10,9,2,female,0,,0,0

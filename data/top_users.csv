@@ -1,0 +1,11 @@
+user_id,username,score,score_label,explanation,converted
+u0061,liam_h_61,91.75,high,signups (+30.0 pts) + calendar_bookings (+30.0 pts) + demo_request_clicks (+15.0 pts),1
+u0042,daniel_r_42,90.2,high,signups (+30.0 pts) + calendar_bookings (+30.0 pts) + demo_request_clicks (+15.0 pts),1
+u0043,sarah_k_43,88.09,high,signups (+30.0 pts) + calendar_bookings (+30.0 pts) + pricing_page_views (+8.0 pts),1
+u0054,priya_p_54,87.11,high,signups (+30.0 pts) + calendar_bookings (+30.0 pts) + demo_request_clicks (+7.5 pts),1
+u0013,nina_d_13,83.73,high,signups (+30.0 pts) + calendar_bookings (+30.0 pts) + demo_request_clicks (+15.0 pts),1
+u0065,ethan_c_65,83.47,high,signups (+30.0 pts) + calendar_bookings (+30.0 pts) + demo_request_clicks (+7.5 pts),1
+u0015,noah_b_15,80.21,high,signups (+30.0 pts) + calendar_bookings (+30.0 pts) + demo_request_clicks (+7.5 pts),1
+u0073,nina_d_73,79.66,high,signups (+30.0 pts) + calendar_bookings (+30.0 pts) + demo_request_clicks (+7.5 pts),1
+u0044,guest_44,77.84,high,signups (+30.0 pts) + calendar_bookings (+30.0 pts) + repeat_session_rate (+5.0 pts),1
+u0060,guest_60,75.54,high,signups (+30.0 pts) + calendar_bookings (+30.0 pts) + repeat_session_rate (+5.0 pts),1

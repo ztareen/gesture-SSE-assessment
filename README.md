@@ -105,3 +105,13 @@ OR
 1. Code
 2. Short README explaining what you built, why you chose it, and what comes next
 
+---
+
+## Running the repository (Windows note) ⚠️
+
+If you're on Windows, prefer using the `py` launcher for running scripts and installing packages to ensure the correct Python environment is used:
+
+- Install dependencies: `py -m pip install pandas`
+- Run the feature script: `py find_user_features.py`
+
+This works with the repository virtual environment created for the assessment and avoids issues where the `python` command is not available in PATH.

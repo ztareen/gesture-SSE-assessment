@@ -4,6 +4,20 @@
 
 This system is designed to **observe and track user behavior**. After the data is captured, for each user, the output is a **numerical intent or qualification score** based on the captured data.
 
+## Why Option C: Scoring / Ranking Slice
+
+I chose Option C (Scoring / Ranking Slice) because:
+
+1. **Explainability is Critical**: For a product like Gesture, stakeholders need to understand *why* a user received a particular score. Rule-based scoring provides transparent, interpretable results that can be easily explained to sales teams, product managers, and executives.
+
+2. **Business Alignment**: Scoring directly maps to business outcomes—identifying high-intent users who are most likely to convert. This enables prioritization of sales outreach, marketing campaigns, and product features.
+
+3. **Evolvability**: Unlike black-box ML models, rule-based systems allow for easy iteration. As we learn which signals matter most (through A/B tests, user feedback, or conversion data), we can directly adjust weights and thresholds in `score_rules.py` without retraining.
+
+4. **Fast Implementation**: Rule-based scoring can be deployed quickly and provides immediate value, while still leaving room for ML enhancement (as shown with the optional XGBoost implementation).
+
+5. **Trust & Debugging**: When scores seem off, we can trace exactly which features contributed and why. This builds trust with stakeholders and makes debugging straightforward.
+
 Based off of the instructions that I was given, I created a project that does the following:
 
 1. Creates and reads a dataset of synthetic user interaction events including page views, pricing page visits, demo requests, signups, and calendar bookings
@@ -43,6 +57,42 @@ You can use this scoring system to find their engagement levels via experiments.
 ## XGBoost
 
 I also included optional XGBoost training files (`train_xgb.py` and `score_model.py`). These are more so just to show how you can develop the code even further to use ML pipelines and features to get even more optimal results. In essence, the same feature pipeline works for both approaches without any modifications.
+
+---
+
+## What Comes Next
+
+### Immediate Next Steps
+
+1. **Validate with Real Data**: Once real user interaction data is available, compare rule-based scores against actual conversion outcomes to validate and refine the weights.
+
+2. **A/B Testing Framework**: Use the scoring system to stratify users for experiments. For example:
+   - Test different messaging for high-intent vs. low-intent users
+   - Measure conversion lift when prioritizing high-scoring users
+   - Iterate on weights based on experiment results
+
+3. **Feature Engineering**: Add more signals as they become available:
+   - Email engagement metrics (opens, clicks)
+   - Support ticket interactions
+   - Product usage depth (features used, time spent)
+   - Referral source and campaign attribution
+
+4. **Threshold Calibration**: Adjust score thresholds (`DEFAULT_THRESHOLDS` in `score_rules.py`) based on:
+   - Conversion rates by score bucket
+   - Sales team capacity and prioritization needs
+   - Business goals (growth vs. efficiency)
+
+### Longer-Term Enhancements
+
+1. **ML Hybrid Approach**: Use the rule-based scores as features in an ML model, combining interpretability with predictive power.
+
+2. **Real-Time Scoring**: Move from batch processing to real-time scoring as users interact with the platform.
+
+3. **Personalization**: Develop user-specific scoring models based on segment, industry, or use case.
+
+4. **Dashboard & Monitoring**: Build production dashboards to track score distributions, feature importance trends, and model performance over time.
+
+5. **Automated Retraining**: Set up pipelines to periodically retrain and validate models as new data arrives.
 
 ---
 

@@ -146,6 +146,22 @@ def run_rank(args):
         print(f"     {r['explanation']}")
 
 
+def start_web_server():
+    """Start the web server to display results in browser"""
+    try:
+        from server import start_server
+        print("\n" + "="*70)
+        print("Starting web server to display results...")
+        print("="*70)
+        start_server(open_browser=True)
+    except ImportError:
+        print("\nWarning: Could not import server module. Install flask and flask-cors:")
+        print("  pip install flask flask-cors")
+    except Exception as e:
+        print(f"\nWarning: Could not start web server: {e}")
+        print("Results are still available in the CSV files.")
+
+
 def run_pipeline(args):
     """Run the complete pipeline end-to-end"""
     print("="*70)
@@ -199,6 +215,13 @@ def run_pipeline(args):
     print("  data/user_features.csv - Engineered features")
     print("  data/user_scores.csv   - Scored users")
     print("  data/top_users.csv     - Top ranked users")
+    
+    # Start web server to display results
+    print("\n" + "="*70)
+    print("Opening results in browser...")
+    print("="*70)
+    print("\nPress Ctrl+C to stop the server and exit.")
+    start_web_server()
 
 
 def main():

@@ -105,17 +105,4 @@ If I were given more time (say a week) to complete this project, I would likely 
 5. I would attempt to integrate XGBoost and more ML concepts
 
 
-## Output Files (for reference)
-
-```
-data/
-├── raw_events.csv          # Synthetic event-level data
-├── user_features.csv       # Engineered user features
-├── user_scores.csv         # Scored + explained users (rules)
-├── top_users.csv          # Top N ranked users for downstream use
-└── user_model_scores.csv  # (Optional) Model-based scores
-
-models/
-├── xgb_model.json         # (Optional) Trained XGBoost model
-└── training_metrics.json  # (Optional) Training performance
-```
+## Output Files Found @ the "Structure" File in this Repository!

@@ -2,8 +2,6 @@
 
 ## Overview
 
-This system is designed to **observe and track user behavior**. After the data is captured, for each user, the output is a **numerical intent or qualification score** based on the captured data.
-
 Based off of the instructions that I was given, I created a project that does the following:
 
 1. Creates and reads a dataset of synthetic user interaction events including page views, pricing page visits, demo requests, signups, and calendar bookings

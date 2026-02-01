@@ -7,7 +7,9 @@ gesture-sse-assessment/
 ├── requirements.txt             # Python dependencies
 ├── STRUCTURE.md                 # This file
 │
-├── main.py                      # CLI orchestration (run everything)
+├── main.py                      # CLI orchestration (run everything + web server)
+├── server.py                    # Web server for browser-based results dashboard
+├── results.html                 # Standalone HTML dashboard (fallback)
 │
 ├── data/
 │   ├── generate_users.py        # Generate synthetic event data
@@ -22,6 +24,13 @@ gesture-sse-assessment/
 │
 ├── train_xgb.py                 # [Optional] Train ML model
 ├── score_model.py               # [Optional] Score with ML
+│
+├── frontend/                    # [Optional] React frontend
+│   ├── package.json
+│   ├── index.html
+│   └── src/
+│       ├── App.jsx              # Main React component with data fetching
+│       └── main.jsx             # React entry point
 │
 └── models/                      # [Optional] Trained model artifacts
     ├── xgb_model.json
@@ -40,7 +49,8 @@ gesture-sse-assessment/
 | **featurize.py** | Build user features | `build_user_features()`<br>`write_user_features()` | `raw_events.csv` | `user_features.csv` |
 | **score_rules.py** | Score with rules | `score_users_rules()` | `user_features.csv` | `user_scores.csv` |
 | **explain.py** | Generate explanations | `explain_rules_global()`<br>`explain_rules_local()` | `user_scores.csv` | Console output |
-| **main.py** | Orchestrate pipeline | `main()` | CLI args | All outputs |
+| **main.py** | Orchestrate pipeline + web server | `main()`<br>`run_pipeline()`<br>`start_web_server()` | CLI args | All outputs + web dashboard |
+| **server.py** | Web server & API | `start_server()`<br>API endpoints: `/api/summary`, `/api/top-users`, `/api/distribution` | CSV files | JSON API + HTML dashboard |
 
 ---
 
@@ -50,6 +60,8 @@ gesture-sse-assessment/
 |------|---------|--------------|
 | **train_xgb.py** | Train learned model | Shows evolution path from rules → ML |
 | **score_model.py** | Score with model | Demonstrates same features work for both |
+| **frontend/** | React web dashboard | Visual interface for viewing results (also served via `results.html`) |
+| **results.html** | Standalone HTML dashboard | Simple fallback dashboard that works without React build |
 
 ---
 
@@ -69,6 +81,11 @@ User Scores              │ (Alternative path)
 [main.py --mode rank]    │
     ↓                     │
 Top Users (top 20)       │
+    ↓                     │
+[server.py]              │
+    ↓                     │
+Web Dashboard            │
+(http://localhost:8000)  │
                           │
                     [train_xgb.py]
                           ↓
@@ -91,6 +108,10 @@ featurize.py       (pandas, numpy)
 score_rules.py     (pandas, numpy, json, math)
     ↓
 explain.py         (pandas, json)
+    ↓
+main.py            (all above + argparse)
+    ↓
+server.py          (flask, flask-cors, pandas, webbrowser)
 
 [Optional Branch]
 featurize.py
@@ -100,32 +121,58 @@ train_xgb.py       (xgboost, sklearn)
 score_model.py     (xgboost)
     ↓
 explain.py         (xgboost, shap)
+
+[Web Interface]
+server.py
+    ↓
+results.html        (standalone, no dependencies)
+    OR
+frontend/           (React + Vite, npm dependencies)
 ```
 
 ---
 
 ## Quick Reference
 
-### Generate Everything
+### Generate Everything (with Web Dashboard)
 ```bash
-python main.py --mode pipeline
+py main.py --mode pipeline
 ```
+This will:
+1. Run the complete pipeline (generate → featurize → score → rank → explain)
+2. Start a web server on http://localhost:8000
+3. Automatically open your browser to view results
 
 ### Run Individual Steps
 ```bash
-python main.py --mode generate     # Step 1: Synthetic data
-python main.py --mode featurize    # Step 2: Features
-python main.py --mode score-rules  # Step 3: Score
-python main.py --mode rank         # Step 4: Top users
-python main.py --mode explain      # Step 5: Analysis
+py main.py --mode generate     # Step 1: Synthetic data
+py main.py --mode featurize    # Step 2: Features
+py main.py --mode score-rules  # Step 3: Score
+py main.py --mode rank         # Step 4: Top users
+py main.py --mode explain      # Step 5: Analysis
 ```
 
 ### Standalone Usage
 ```bash
 # Each module can run independently
-python featurize.py data/raw_events.csv data/user_features.csv
-python score_rules.py data/user_features.csv data/user_scores.csv
-python explain.py data/user_scores.csv
+py featurize.py data/raw_events.csv data/user_features.csv
+py score_rules.py data/user_features.csv data/user_scores.csv
+py explain.py data/user_scores.csv
+```
+
+### Web Server (Standalone)
+```bash
+# Start server manually (after pipeline has run)
+py server.py
+# Then visit http://localhost:8000
+```
+
+### Frontend Development (Optional)
+```bash
+cd frontend
+npm install
+npm run dev
+# React dev server runs on separate port (usually :5173)
 ```
 
 ---
@@ -137,3 +184,26 @@ python explain.py data/user_scores.csv
 3. **Standalone runnable** — Each file has `if __name__ == "__main__"` block
 4. **CLI-friendly** — main.py provides unified interface
 5. **Pipeline agnostic** — Features work for rules OR models without changes
+6. **Dual output** — Results displayed in both terminal and browser dashboard
+7. **Windows-friendly** — Uses `py` command for cross-platform compatibility
+
+## Web Server & API
+
+The `server.py` module provides:
+
+- **API Endpoints:**
+  - `GET /api/summary` - Summary statistics (total users, mean/median scores, intent distribution)
+  - `GET /api/top-users` - Top 20 users by score
+  - `GET /api/distribution` - Score distribution by ranges
+  - `GET /api/users` - All users data
+
+- **Web Interface:**
+  - Serves `results.html` (standalone dashboard) or built React frontend
+  - Automatically opens browser when pipeline completes
+  - Auto-refreshes data every 5 seconds
+
+- **Dependencies:**
+  - Flask (web framework)
+  - flask-cors (CORS support for API)
+  - pandas (CSV reading)
+  - webbrowser (auto-open browser)

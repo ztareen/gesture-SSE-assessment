@@ -112,6 +112,8 @@ pip install -r requirements.txt
 py main.py --mode pipeline
 ```
 
+This runs the full pipeline and will automatically start a small local web server and open a browser-based results dashboard (http://localhost:8000); the page uses `results.html` or the built frontend if present.
+
 My main file does the following (view the structure.md for more information):
 1. Generate synthetic event data
 2. Build user features
@@ -142,6 +144,8 @@ py main.py --mode explain --user-id user_042  # specific user
 ## Optional Frontend (React)
 
 I've also included a minimal style react frontend in the `frontend/` folder, using Vite. It's a totally optional demo but I figured that it was a good step towards being able to see things without looking at the terminal or scanning through a CSV file. If I was given more than 3 hours to complete this assesment, that is what I would likely spend more time working on (as well as probably refining my rules and running experiments to adjust coefficients and weights in my calculations). In order to see it for yourself, just type this into the terminal: `cd frontend, then npm install, then npm run dev`.
+
+Note: running the pipeline will also start a small Flask server at http://localhost:8000 and open the results dashboard (it falls back to `results.html` if the built frontend isn't present).
 
 ---
 
